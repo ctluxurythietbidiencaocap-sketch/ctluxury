@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { Gem } from "lucide-react";
+import { Gem, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import villaImg from "@/assets/villa-classic.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
