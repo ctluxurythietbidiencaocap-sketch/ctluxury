@@ -98,8 +98,16 @@ const AboutSection = () => {
               <div className="text-4xl font-serif font-bold text-gold mb-2">{statValues[i]}</div>
               <div className="text-muted-foreground text-sm tracking-wider uppercase">{t(translations.about.stats[key], lang)}</div>
             </div>
-          ))}
-        </div>
+           ))}
+          </div>
+
+          {/* View More */}
+          <div className="text-center mt-10">
+            <Link to="/about" className="inline-flex items-center gap-2 text-gold text-sm tracking-wider uppercase hover:gap-3 transition-all duration-300 group">
+              <span>{lang === "vi" ? "Xem chi tiết" : "View Details"}</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
       </div>
     </section>
   );

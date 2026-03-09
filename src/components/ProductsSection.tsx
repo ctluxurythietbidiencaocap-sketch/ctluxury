@@ -84,6 +84,14 @@ const ProductsSection = () => {
             </div>
           ))}
         </div>
+
+        {/* View More */}
+        <div className="text-center mt-12">
+          <Link to="/products" className="btn-luxury-outline text-sm tracking-[0.2em] rounded-none px-10 py-3 inline-flex items-center gap-2">
+            {lang === "vi" ? "Xem Tất Cả Sản Phẩm" : "View All Products"}
+            <ArrowRight size={14} />
+          </Link>
+        </div>
       </div>
     </section>
   );

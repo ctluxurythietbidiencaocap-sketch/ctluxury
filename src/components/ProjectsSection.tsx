@@ -65,6 +65,14 @@ const ProjectsSection = () => {
             </div>
           ))}
         </div>
+
+        {/* View More */}
+        <div className="text-center mt-12">
+          <Link to="/projects" className="btn-luxury-outline text-sm tracking-[0.2em] rounded-none px-10 py-3 inline-flex items-center gap-2">
+            {lang === "vi" ? "Xem Tất Cả Công Trình" : "View All Projects"}
+            <ArrowRight size={14} />
+          </Link>
+        </div>
       </div>
     </section>
   );
