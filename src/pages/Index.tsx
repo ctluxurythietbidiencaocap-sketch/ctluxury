@@ -45,9 +45,7 @@ const Index = () => {
           className="w-12 h-12 flex items-center justify-center rounded-full shadow-lg hover:scale-110 transition-transform duration-300 overflow-hidden bg-[#0068ff]"
           title="Chat Zalo"
         >
-          <div className="w-full h-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs">
-            Zalo
-          </div>
+          <span className="text-white font-bold text-xs">Zalo</span>
         </a>
       </div>
     </div>
