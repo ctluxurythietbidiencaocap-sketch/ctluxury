@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import villaImg from "@/assets/villa-classic.jpg";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import hotelImg from "@/assets/hotel-lobby.jpg";
 import heroBgImg from "@/assets/hero-bg.jpg";
 import bathroomImg from "@/assets/bathroom.jpg";
