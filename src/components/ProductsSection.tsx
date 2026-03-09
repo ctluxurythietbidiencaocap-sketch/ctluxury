@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { Zap, Lightbulb, Lock, Home, Camera, Droplets } from "lucide-react";
+import { Zap, Lightbulb, Lock, Home, Camera, Droplets, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import smartHomeImg from "@/assets/smart-home.jpg";
 import bathroomImg from "@/assets/bathroom.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -82,6 +83,14 @@ const ProductsSection = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View More */}
+        <div className="text-center mt-12">
+          <Link to="/products" className="btn-luxury-outline text-sm tracking-[0.2em] rounded-none px-10 py-3 inline-flex items-center gap-2">
+            {lang === "vi" ? "Xem Tất Cả Sản Phẩm" : "View All Products"}
+            <ArrowRight size={14} />
+          </Link>
         </div>
       </div>
     </section>

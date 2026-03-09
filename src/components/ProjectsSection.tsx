@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import villaImg from "@/assets/villa-classic.jpg";
 import hotelImg from "@/assets/hotel-lobby.jpg";
 import heroBgImg from "@/assets/hero-bg.jpg";
@@ -63,6 +65,14 @@ const ProjectsSection = () => {
               <div className="absolute inset-0 border border-gold/0 group-hover:border-gold/40 rounded-lg transition-all duration-500" />
             </div>
           ))}
+        </div>
+
+        {/* View More */}
+        <div className="text-center mt-12">
+          <Link to="/projects" className="btn-luxury-outline text-sm tracking-[0.2em] rounded-none px-10 py-3 inline-flex items-center gap-2">
+            {lang === "vi" ? "Xem Tất Cả Công Trình" : "View All Projects"}
+            <ArrowRight size={14} />
+          </Link>
         </div>
       </div>
     </section>
