@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { Zap, Lightbulb, Lock, Home, Camera, Droplets } from "lucide-react";
+import { Zap, Lightbulb, Lock, Home, Camera, Droplets, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import smartHomeImg from "@/assets/smart-home.jpg";
 import bathroomImg from "@/assets/bathroom.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
