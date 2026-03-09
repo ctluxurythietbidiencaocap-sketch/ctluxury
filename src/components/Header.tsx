@@ -1,25 +1,19 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Globe } from "lucide-react";
 import logoImg from "@/assets/logo.png";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
 
-const navItems = [
-  { label: "Trang Chủ", href: "#home" },
-  { label: "Giới Thiệu", href: "#about" },
-  { label: "Sản Phẩm", href: "#products" },
-  { label: "Smart Home", href: "#smarthome" },
-  { label: "Công Trình", href: "#projects" },
-  { label: "Tin Tức", href: "#news" },
-  { label: "Liên Hệ", href: "#contact" },
-];
+const navKeys = ["home", "about", "products", "smarthome", "projects", "news", "contact"] as const;
+const navHrefs = ["#home", "#about", "#products", "#smarthome", "#projects", "#news", "#contact"];
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { lang, toggleLanguage } = useLanguage();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 60);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -39,75 +33,67 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <button
-          onClick={() => scrollTo("#home")}
-          className="flex items-center gap-3 group"
-        >
-          <img
-            src={logoImg}
-            alt="CT Luxury Logo"
-            className="h-12 w-12 object-contain group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]"
-          />
+        <button onClick={() => scrollTo("#home")} className="flex items-center gap-3 group">
+          <img src={logoImg} alt="CT Luxury Logo" className="h-12 w-12 object-contain group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
           <div className="text-left">
-            <div className="text-gold font-serif font-bold text-xl tracking-widest leading-none">
-              CT LUXURY
-            </div>
-            <div className="text-muted-foreground text-xs tracking-wider uppercase mt-0.5">
-              High-End Electrical Equipment
-            </div>
+            <div className="text-gold font-serif font-bold text-xl tracking-widest leading-none">CT LUXURY</div>
+            <div className="text-muted-foreground text-xs tracking-wider uppercase mt-0.5">High-End Electrical Equipment</div>
           </div>
         </button>
 
-        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
+          {navKeys.map((key, i) => (
             <button
-              key={item.href}
-              onClick={() => scrollTo(item.href)}
+              key={key}
+              onClick={() => scrollTo(navHrefs[i])}
               className="px-4 py-2 text-sm tracking-wider text-foreground/80 hover:text-gold transition-all duration-300 relative group uppercase font-medium"
             >
-              {item.label}
+              {t(translations.nav[key], lang)}
               <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full" />
             </button>
           ))}
         </nav>
 
-        {/* Hotline */}
-        <a
-          href="tel:0889271571"
-          className="hidden lg:flex items-center gap-2 btn-luxury text-sm rounded-none tracking-widest"
-        >
-          <Phone size={14} />
-          0889.271.571
-        </a>
+        <div className="hidden lg:flex items-center gap-3">
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs tracking-wider text-gold/80 hover:text-gold border border-gold/30 hover:border-gold/60 transition-all duration-300 uppercase font-medium"
+          >
+            <Globe size={14} />
+            {lang === "vi" ? "EN" : "VI"}
+          </button>
+          <a href="tel:0889271571" className="flex items-center gap-2 btn-luxury text-sm rounded-none tracking-widest">
+            <Phone size={14} />
+            0889.271.571
+          </a>
+        </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-gold p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
+        <button className="lg:hidden text-gold p-2" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <div className="lg:hidden bg-black/98 backdrop-blur-md border-t border-gold/20 animate-fade-up">
           <div className="container mx-auto px-6 py-6 flex flex-col gap-2">
-            {navItems.map((item) => (
+            {navKeys.map((key, i) => (
               <button
-                key={item.href}
-                onClick={() => scrollTo(item.href)}
+                key={key}
+                onClick={() => scrollTo(navHrefs[i])}
                 className="py-3 text-left text-foreground/80 hover:text-gold transition-colors duration-300 tracking-wider uppercase text-sm border-b border-white/5"
               >
-                {item.label}
+                {t(translations.nav[key], lang)}
               </button>
             ))}
-            <a
-              href="tel:0889271571"
-              className="mt-4 btn-luxury text-center text-sm rounded-none tracking-widest flex items-center justify-center gap-2"
+            <button
+              onClick={() => { toggleLanguage(); setMenuOpen(false); }}
+              className="py-3 text-left text-gold/80 hover:text-gold transition-colors duration-300 tracking-wider uppercase text-sm border-b border-white/5 flex items-center gap-2"
             >
+              <Globe size={14} />
+              {lang === "vi" ? "English" : "Tiếng Việt"}
+            </button>
+            <a href="tel:0889271571" className="mt-4 btn-luxury text-center text-sm rounded-none tracking-widest flex items-center justify-center gap-2">
               <Phone size={14} />
               0889.271.571
             </a>
