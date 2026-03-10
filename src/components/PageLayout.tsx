@@ -12,7 +12,7 @@ const pageNavItems = [
   { key: "about" as const, path: "/about" },
   { key: "products" as const, path: "/products" },
   { key: "smarthome" as const, path: "/#smarthome" },
-  { key: "projects" as const, path: "/projects" },
+  { key: "catalogue" as const, path: "/catalogue/switches" },
   { key: "news" as const, path: "/#news" },
   { key: "contact" as const, path: "/#contact" },
 ];
