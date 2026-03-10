@@ -7,7 +7,7 @@ export const translations = {
     about: { vi: "Giới Thiệu", en: "About" },
     products: { vi: "Sản Phẩm", en: "Products" },
     smarthome: { vi: "Smart Home", en: "Smart Home" },
-    projects: { vi: "Công Trình", en: "Projects" },
+    catalogue: { vi: "Catalogue", en: "Catalogue" },
     news: { vi: "Tin Tức", en: "News" },
     contact: { vi: "Liên Hệ", en: "Contact" },
   },
