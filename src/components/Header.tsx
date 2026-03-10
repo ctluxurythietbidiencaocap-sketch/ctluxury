@@ -1,16 +1,25 @@
-import { useState, useEffect } from "react";
-import { Menu, X, Phone, Globe } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Menu, X, Phone, Globe, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logoImg from "@/assets/logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
+
+const catalogueItems = [
+  { key: "switches", path: "/catalogue/switches", vi: "Catalogue Công Tắc Ổ Cắm ABE", en: "ABE Switches & Sockets Catalogue" },
+  { key: "lighting", path: "/catalogue/lighting", vi: "Catalogue Đèn Chiếu Sáng", en: "Lighting Catalogue" },
+  { key: "chandeliers", path: "/catalogue/chandeliers", vi: "Catalogue Đèn Chùm & Trang Trí", en: "Chandeliers & Decorative Catalogue" },
+  { key: "rangos", path: "/catalogue/rangos", vi: "Catalogue Thiết Bị Vệ Sinh RANGOS", en: "RANGOS Sanitary Catalogue" },
+  { key: "flova", path: "/catalogue/flova", vi: "Catalogue Thiết Bị Vệ Sinh FLOVA", en: "FLOVA Sanitary Catalogue" },
+  { key: "cameras", path: "/catalogue/cameras", vi: "Catalogue Camera An Ninh", en: "Security Camera Catalogue" },
+];
 
 const navItems = [
   { key: "home" as const, href: "#home", path: "/" },
   { key: "about" as const, href: "#about", path: "/about" },
   { key: "products" as const, href: "#products", path: "/products" },
   { key: "smarthome" as const, href: "#smarthome", path: null },
-  { key: "projects" as const, href: "#projects", path: "/projects" },
+  { key: "catalogue" as const, href: null, path: null, hasDropdown: true },
   { key: "news" as const, href: "#news", path: null },
   { key: "contact" as const, href: "#contact", path: null },
 ];
@@ -18,6 +27,9 @@ const navItems = [
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [catalogueOpen, setCatalogueOpen] = useState(false);
+  const [mobileCatalogueOpen, setMobileCatalogueOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const { lang, toggleLanguage } = useLanguage();
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -28,19 +40,56 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setCatalogueOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const handleNav = (item: typeof navItems[0]) => {
     setMenuOpen(false);
     if (isHome && item.href) {
       const el = document.querySelector(item.href);
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }
-    // For items with path, Link handles navigation
   };
 
   const renderNavItem = (item: typeof navItems[0]) => {
     const label = t(translations.nav[item.key], lang);
 
-    // On homepage: scroll to section. On other pages or items with dedicated pages: use Link
+    if ('hasDropdown' in item && item.hasDropdown) {
+      return (
+        <div key={item.key} ref={dropdownRef} className="relative">
+          <button
+            onClick={() => setCatalogueOpen(!catalogueOpen)}
+            className="px-4 py-2 text-sm tracking-wider text-foreground/80 hover:text-gold transition-all duration-300 relative group uppercase font-medium flex items-center gap-1"
+          >
+            {label}
+            <ChevronDown size={14} className={`transition-transform duration-200 ${catalogueOpen ? 'rotate-180' : ''}`} />
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full" />
+          </button>
+          {catalogueOpen && (
+            <div className="absolute top-full left-0 mt-2 w-72 bg-black/95 backdrop-blur-md border border-gold/20 rounded-sm shadow-2xl z-50 animate-fade-up py-2">
+              {catalogueItems.map((cat) => (
+                <Link
+                  key={cat.key}
+                  to={cat.path}
+                  onClick={() => setCatalogueOpen(false)}
+                  className="block px-5 py-3 text-sm text-foreground/70 hover:text-gold hover:bg-gold/5 transition-all duration-200 tracking-wide"
+                >
+                  {lang === "vi" ? cat.vi : cat.en}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
     if (isHome) {
       return (
         <button
@@ -54,7 +103,6 @@ const Header = () => {
       );
     }
 
-    // On subpages: link to page or back to home section
     const to = item.path || `/${item.href}`;
     return (
       <Link
@@ -70,6 +118,34 @@ const Header = () => {
 
   const renderMobileNavItem = (item: typeof navItems[0]) => {
     const label = t(translations.nav[item.key], lang);
+
+    if ('hasDropdown' in item && item.hasDropdown) {
+      return (
+        <div key={item.key}>
+          <button
+            onClick={() => setMobileCatalogueOpen(!mobileCatalogueOpen)}
+            className="py-3 w-full text-left text-foreground/80 hover:text-gold transition-colors duration-300 tracking-wider uppercase text-sm border-b border-white/5 flex items-center justify-between"
+          >
+            {label}
+            <ChevronDown size={14} className={`transition-transform duration-200 ${mobileCatalogueOpen ? 'rotate-180' : ''}`} />
+          </button>
+          {mobileCatalogueOpen && (
+            <div className="pl-4 border-l border-gold/20 ml-2">
+              {catalogueItems.map((cat) => (
+                <Link
+                  key={cat.key}
+                  to={cat.path}
+                  onClick={() => { setMenuOpen(false); setMobileCatalogueOpen(false); }}
+                  className="block py-2.5 text-sm text-foreground/60 hover:text-gold transition-colors duration-200 tracking-wide"
+                >
+                  {lang === "vi" ? cat.vi : cat.en}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
 
     if (isHome) {
       return (
