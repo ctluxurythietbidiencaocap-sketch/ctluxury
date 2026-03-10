@@ -33,7 +33,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <div className="mb-8 animate-float">
-          <img src={logoImg} alt="CT Luxury" width={980} height={980} className="h-[980px] w-[980px] max-w-full object-contain mx-auto drop-shadow-[0_0_20px_rgba(212,175,55,0.8)]" />
+          <img src={logoImg} alt="CT Luxury" className="h-24 w-24 object-contain mx-auto drop-shadow-[0_0_20px_rgba(212,175,55,0.8)]" />
         </div>
 
         <div className="flex items-center justify-center gap-4 mb-6">
