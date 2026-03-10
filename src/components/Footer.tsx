@@ -3,8 +3,8 @@ import logoImg from "@/assets/logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 
-const navKeys = ["home", "about", "products", "smarthome", "projects", "news", "contact"] as const;
-const navHrefs = ["#home", "#about", "#products", "#smarthome", "#projects", "#news", "#contact"];
+const navKeys = ["home", "about", "products", "smarthome", "catalogue", "news", "contact"] as const;
+const navHrefs = ["#home", "#about", "#products", "#smarthome", "#catalogue", "#news", "#contact"];
 
 const Footer = () => {
   const { lang } = useLanguage();
