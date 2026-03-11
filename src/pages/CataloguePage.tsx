@@ -80,26 +80,69 @@ const CataloguePage = () => {
             <p className="text-foreground/70 text-base leading-relaxed">{content.description}</p>
           </div>
 
-          {/* Placeholder catalogue content */}
-          <div className="max-w-2xl mx-auto">
-            <div className="border border-gold/20 rounded-sm p-12 text-center bg-gold/5">
-              <FileText size={48} className="text-gold/50 mx-auto mb-6" />
-              <h3 className="font-serif text-xl text-foreground mb-3">
-                {lang === "vi" ? "Catalogue đang được cập nhật" : "Catalogue coming soon"}
-              </h3>
-              <p className="text-muted-foreground text-sm mb-8">
-                {lang === "vi"
-                  ? "Vui lòng liên hệ hotline để nhận catalogue chi tiết."
-                  : "Please contact our hotline for detailed catalogue."}
-              </p>
-              <a
-                href="tel:0889271571"
-                className="btn-luxury text-sm tracking-[0.2em] rounded-none px-10 py-4 inline-flex items-center gap-2"
-              >
-                {lang === "vi" ? "Gọi Ngay: 0889.271.571" : "Call Now: 0889.271.571"}
-              </a>
+          {category === "euroto2026" ? (
+            <div className="max-w-4xl mx-auto">
+              {/* Download button */}
+              <div className="text-center mb-12">
+                <a
+                  href="https://drive.google.com/file/d/183wBpZ0TTMK8OS9B2TjjcI2OBnaWojIz/view"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-luxury text-sm tracking-[0.2em] rounded-none px-10 py-4 inline-flex items-center gap-3"
+                >
+                  <Download size={18} />
+                  DOWNLOAD CATALOGUE
+                </a>
+              </div>
+
+              {/* Euroto catalogue images */}
+              <div className="space-y-6">
+                {eurotoImages.map((img, i) => (
+                  <div key={i} className="border border-gold/10 rounded-sm overflow-hidden">
+                    <img
+                      src={img}
+                      alt={`Catalogue EUROTO 2026 - Trang ${i + 1}`}
+                      className="w-full h-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Download button bottom */}
+              <div className="text-center mt-12">
+                <a
+                  href="https://drive.google.com/file/d/183wBpZ0TTMK8OS9B2TjjcI2OBnaWojIz/view"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-luxury text-sm tracking-[0.2em] rounded-none px-10 py-4 inline-flex items-center gap-3"
+                >
+                  <Download size={18} />
+                  DOWNLOAD CATALOGUE
+                </a>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="max-w-2xl mx-auto">
+              <div className="border border-gold/20 rounded-sm p-12 text-center bg-gold/5">
+                <FileText size={48} className="text-gold/50 mx-auto mb-6" />
+                <h3 className="font-serif text-xl text-foreground mb-3">
+                  {lang === "vi" ? "Catalogue đang được cập nhật" : "Catalogue coming soon"}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-8">
+                  {lang === "vi"
+                    ? "Vui lòng liên hệ hotline để nhận catalogue chi tiết."
+                    : "Please contact our hotline for detailed catalogue."}
+                </p>
+                <a
+                  href="tel:0889271571"
+                  className="btn-luxury text-sm tracking-[0.2em] rounded-none px-10 py-4 inline-flex items-center gap-2"
+                >
+                  {lang === "vi" ? "Gọi Ngay: 0889.271.571" : "Call Now: 0889.271.571"}
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </PageLayout>
