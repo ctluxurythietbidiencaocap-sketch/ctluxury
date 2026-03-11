@@ -3,11 +3,6 @@ import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { FileText, Download } from "lucide-react";
-import euroto1 from "@/assets/euroto-catalogue-1.jpg";
-import euroto2 from "@/assets/euroto-catalogue-2.jpg";
-import euroto3 from "@/assets/euroto-catalogue-3.jpg";
-import euroto4 from "@/assets/euroto-catalogue-4.jpg";
-import euroto5 from "@/assets/euroto-catalogue-5.jpg";
 
 const catalogueData: Record<string, { vi: { title: string; subtitle: string; description: string }; en: { title: string; subtitle: string; description: string } }> = {
   switches: {
@@ -36,7 +31,16 @@ const catalogueData: Record<string, { vi: { title: string; subtitle: string; des
   },
 };
 
-const eurotoImages = [euroto1, euroto2, euroto3, euroto4, euroto5];
+// Generate all EUROTO 2026 catalogue image URLs from eurotolighting.net
+const BASE_URL = "https://eurotolighting.net/wp-content/uploads/2025/09/catalogue-den-trang-tri-euroto";
+
+const eurotoImageUrls: string[] = [
+  `${BASE_URL}.jpg`,
+  ...Array.from({ length: 535 }, (_, i) => {
+    const num = String(i + 1).padStart(3, "0");
+    return `${BASE_URL}_${num}.jpg`;
+  }),
+];
 
 const CataloguePage = () => {
   const { category } = useParams<{ category: string }>();
@@ -95,12 +99,12 @@ const CataloguePage = () => {
                 </a>
               </div>
 
-              {/* Euroto catalogue images */}
+              {/* Euroto catalogue images - all 536 pages */}
               <div className="space-y-6">
-                {eurotoImages.map((img, i) => (
+                {eurotoImageUrls.map((url, i) => (
                   <div key={i} className="border border-gold/10 rounded-sm overflow-hidden">
                     <img
-                      src={img}
+                      src={url}
                       alt={`Catalogue EUROTO 2026 - Trang ${i + 1}`}
                       className="w-full h-auto object-contain"
                       loading="lazy"
