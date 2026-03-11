@@ -22,10 +22,6 @@ const catalogueData: Record<string, { vi: { title: string; subtitle: string; des
     vi: { title: "CATALOGUE - EUROTO 2026", subtitle: "Catalogue đèn trang trí cao cấp EUROTO 2026", description: "Catalogue đèn trang trí EUROTO 2026 cập nhật mới nhất – đèn chùm, đèn đồng, đèn trang trí phong cách châu Âu." },
     en: { title: "CATALOGUE - EUROTO 2026", subtitle: "EUROTO 2026 premium decorative lighting catalogue", description: "Latest EUROTO 2026 decorative lighting catalogue – chandeliers, brass lamps, European-style decorative lighting." },
   },
-  euroto2026: {
-    vi: { title: "CATALOGUE - EUROTO 2026", subtitle: "Catalogue đèn trang trí cao cấp EUROTO 2026", description: "Catalogue đèn trang trí EUROTO 2026 cập nhật mới nhất – đèn chùm, đèn đồng, đèn trang trí phong cách châu Âu." },
-    en: { title: "CATALOGUE - EUROTO 2026", subtitle: "EUROTO 2026 premium decorative lighting catalogue", description: "Latest EUROTO 2026 decorative lighting catalogue – chandeliers, brass lamps, European-style decorative lighting." },
-  },
   rangos: {
     vi: { title: "Catalogue Thiết Bị Vệ Sinh RANGOS", subtitle: "Thiết bị phòng tắm cao cấp thương hiệu RANGOS", description: "Vòi lavabo, sen tắm, bồn cầu và phụ kiện phòng tắm RANGOS với thiết kế hiện đại, chất lượng châu Âu." },
     en: { title: "RANGOS Sanitary Catalogue", subtitle: "Premium RANGOS bathroom fixtures", description: "Basin faucets, showers, toilets, and RANGOS bathroom accessories with modern design and European quality." },
