@@ -3,19 +3,24 @@ import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { FileText, Download } from "lucide-react";
+import euroto1 from "@/assets/euroto-catalogue-1.jpg";
+import euroto2 from "@/assets/euroto-catalogue-2.jpg";
+import euroto3 from "@/assets/euroto-catalogue-3.jpg";
+import euroto4 from "@/assets/euroto-catalogue-4.jpg";
+import euroto5 from "@/assets/euroto-catalogue-5.jpg";
 
 const catalogueData: Record<string, { vi: { title: string; subtitle: string; description: string }; en: { title: string; subtitle: string; description: string } }> = {
   switches: {
     vi: { title: "Catalogue Công Tắc Ổ Cắm ABE", subtitle: "Bộ sưu tập công tắc và ổ cắm cao cấp thương hiệu ABE chuẩn châu Âu", description: "Khám phá toàn bộ dòng sản phẩm công tắc, ổ cắm điện cao cấp ABE với thiết kế sang trọng, chất liệu bền bỉ và tiêu chuẩn an toàn châu Âu." },
     en: { title: "ABE Switches & Sockets Catalogue", subtitle: "Premium European-standard ABE switches and sockets collection", description: "Explore the complete range of ABE premium switches and sockets featuring elegant design, durable materials, and European safety standards." },
   },
-  lighting: {
-    vi: { title: "Catalogue Đèn Chiếu Sáng", subtitle: "Hệ thống đèn chiếu sáng cao cấp cho mọi không gian", description: "Đèn downlight, đèn LED panel, đèn rọi ray và các giải pháp chiếu sáng thông minh cho biệt thự, khách sạn và resort." },
-    en: { title: "Lighting Catalogue", subtitle: "Premium lighting systems for every space", description: "Downlights, LED panels, track lights, and smart lighting solutions for villas, hotels, and resorts." },
-  },
   chandeliers: {
-    vi: { title: "Catalogue Đèn Chùm & Trang Trí", subtitle: "Đèn chùm pha lê và đèn trang trí nghệ thuật đẳng cấp", description: "Bộ sưu tập đèn chùm pha lê, đèn tường trang trí, đèn sàn và đèn bàn cao cấp cho không gian sống sang trọng." },
-    en: { title: "Chandeliers & Decorative Catalogue", subtitle: "Crystal chandeliers and artistic decorative lighting", description: "Collection of crystal chandeliers, decorative wall lights, floor lamps, and premium table lamps for luxury living spaces." },
+    vi: { title: "CATALOGUE Đèn Chiếu Sáng & Trang Trí", subtitle: "Đèn chùm pha lê, đèn chiếu sáng và đèn trang trí nghệ thuật đẳng cấp", description: "Bộ sưu tập đèn chùm pha lê, đèn chiếu sáng, đèn tường trang trí, đèn sàn và đèn bàn cao cấp cho không gian sống sang trọng." },
+    en: { title: "Lighting & Decorative Catalogue", subtitle: "Crystal chandeliers, lighting systems and artistic decorative lighting", description: "Collection of crystal chandeliers, lighting systems, decorative wall lights, floor lamps, and premium table lamps for luxury living spaces." },
+  },
+  euroto2026: {
+    vi: { title: "CATALOGUE - EUROTO 2026", subtitle: "Catalogue đèn trang trí cao cấp EUROTO 2026", description: "Catalogue đèn trang trí EUROTO 2026 cập nhật mới nhất – đèn chùm, đèn đồng, đèn trang trí phong cách châu Âu." },
+    en: { title: "CATALOGUE - EUROTO 2026", subtitle: "EUROTO 2026 premium decorative lighting catalogue", description: "Latest EUROTO 2026 decorative lighting catalogue – chandeliers, brass lamps, European-style decorative lighting." },
   },
   rangos: {
     vi: { title: "Catalogue Thiết Bị Vệ Sinh RANGOS", subtitle: "Thiết bị phòng tắm cao cấp thương hiệu RANGOS", description: "Vòi lavabo, sen tắm, bồn cầu và phụ kiện phòng tắm RANGOS với thiết kế hiện đại, chất lượng châu Âu." },
@@ -30,6 +35,8 @@ const catalogueData: Record<string, { vi: { title: string; subtitle: string; des
     en: { title: "Security Camera Catalogue", subtitle: "Smart AI surveillance camera systems", description: "4K Ultra HD security cameras, AI facial recognition cameras, 24/7 remote monitoring systems, and cloud storage." },
   },
 };
+
+const eurotoImages = [euroto1, euroto2, euroto3, euroto4, euroto5];
 
 const CataloguePage = () => {
   const { category } = useParams<{ category: string }>();

@@ -7,8 +7,9 @@ import { translations, t } from "@/i18n/translations";
 
 const catalogueItems = [
   { key: "switches", path: "/catalogue/switches", vi: "Catalogue Công Tắc Ổ Cắm ABE", en: "ABE Switches & Sockets Catalogue" },
-  { key: "lighting", path: "/catalogue/lighting", vi: "Catalogue Đèn Chiếu Sáng", en: "Lighting Catalogue" },
-  { key: "chandeliers", path: "/catalogue/chandeliers", vi: "Catalogue Đèn Chùm & Trang Trí", en: "Chandeliers & Decorative Catalogue" },
+  { key: "chandeliers", path: "/catalogue/chandeliers", vi: "CATALOGUE Đèn Chiếu Sáng & Trang Trí", en: "Lighting & Decorative Catalogue", children: [
+    { key: "euroto2026", path: "/catalogue/euroto2026", vi: "CATALOGUE - EUROTO 2026", en: "CATALOGUE - EUROTO 2026" },
+  ] },
   { key: "rangos", path: "/catalogue/rangos", vi: "Catalogue Thiết Bị Vệ Sinh RANGOS", en: "RANGOS Sanitary Catalogue" },
   { key: "flova", path: "/catalogue/flova", vi: "Catalogue Thiết Bị Vệ Sinh FLOVA", en: "FLOVA Sanitary Catalogue" },
   { key: "cameras", path: "/catalogue/cameras", vi: "Catalogue Camera An Ninh", en: "Security Camera Catalogue" },
