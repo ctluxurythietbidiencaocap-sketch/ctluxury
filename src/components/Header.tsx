@@ -144,14 +144,25 @@ const Header = () => {
           {mobileCatalogueOpen && (
             <div className="pl-4 border-l border-gold/20 ml-2">
               {catalogueItems.map((cat) => (
-                <Link
-                  key={cat.key}
-                  to={cat.path}
-                  onClick={() => { setMenuOpen(false); setMobileCatalogueOpen(false); }}
-                  className="block py-2.5 text-sm text-foreground/60 hover:text-gold transition-colors duration-200 tracking-wide"
-                >
-                  {lang === "vi" ? cat.vi : cat.en}
-                </Link>
+                <div key={cat.key}>
+                  <Link
+                    to={cat.path}
+                    onClick={() => { setMenuOpen(false); setMobileCatalogueOpen(false); }}
+                    className="block py-2.5 text-sm text-foreground/60 hover:text-gold transition-colors duration-200 tracking-wide"
+                  >
+                    {lang === "vi" ? cat.vi : cat.en}
+                  </Link>
+                  {'children' in cat && cat.children && cat.children.map((child) => (
+                    <Link
+                      key={child.key}
+                      to={child.path}
+                      onClick={() => { setMenuOpen(false); setMobileCatalogueOpen(false); }}
+                      className="block py-2 pl-4 text-sm text-foreground/40 hover:text-gold transition-colors duration-200 tracking-wide"
+                    >
+                      ↳ {lang === "vi" ? child.vi : child.en}
+                    </Link>
+                  ))}
+                </div>
               ))}
             </div>
           )}
