@@ -7,8 +7,9 @@ import { translations, t } from "@/i18n/translations";
 
 const catalogueItems = [
   { key: "switches", path: "/catalogue/switches", vi: "Catalogue Công Tắc Ổ Cắm ABE", en: "ABE Switches & Sockets Catalogue" },
-  { key: "lighting", path: "/catalogue/lighting", vi: "Catalogue Đèn Chiếu Sáng", en: "Lighting Catalogue" },
-  { key: "chandeliers", path: "/catalogue/chandeliers", vi: "Catalogue Đèn Chùm & Trang Trí", en: "Chandeliers & Decorative Catalogue" },
+  { key: "chandeliers", path: "/catalogue/chandeliers", vi: "CATALOGUE Đèn Chiếu Sáng & Trang Trí", en: "Lighting & Decorative Catalogue", children: [
+    { key: "euroto2026", path: "/catalogue/euroto2026", vi: "CATALOGUE - EUROTO 2026", en: "CATALOGUE - EUROTO 2026" },
+  ] },
   { key: "rangos", path: "/catalogue/rangos", vi: "Catalogue Thiết Bị Vệ Sinh RANGOS", en: "RANGOS Sanitary Catalogue" },
   { key: "flova", path: "/catalogue/flova", vi: "Catalogue Thiết Bị Vệ Sinh FLOVA", en: "FLOVA Sanitary Catalogue" },
   { key: "cameras", path: "/catalogue/cameras", vi: "Catalogue Camera An Ninh", en: "Security Camera Catalogue" },
@@ -73,16 +74,27 @@ const Header = () => {
             <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full" />
           </button>
           {catalogueOpen && (
-            <div className="absolute top-full left-0 mt-2 w-72 bg-black/95 backdrop-blur-md border border-gold/20 rounded-sm shadow-2xl z-50 animate-fade-up py-2">
+            <div className="absolute top-full left-0 mt-2 w-80 bg-black/95 backdrop-blur-md border border-gold/20 rounded-sm shadow-2xl z-50 animate-fade-up py-2">
               {catalogueItems.map((cat) => (
-                <Link
-                  key={cat.key}
-                  to={cat.path}
-                  onClick={() => setCatalogueOpen(false)}
-                  className="block px-5 py-3 text-sm text-foreground/70 hover:text-gold hover:bg-gold/5 transition-all duration-200 tracking-wide"
-                >
-                  {lang === "vi" ? cat.vi : cat.en}
-                </Link>
+                <div key={cat.key}>
+                  <Link
+                    to={cat.path}
+                    onClick={() => setCatalogueOpen(false)}
+                    className="block px-5 py-3 text-sm text-foreground/70 hover:text-gold hover:bg-gold/5 transition-all duration-200 tracking-wide"
+                  >
+                    {lang === "vi" ? cat.vi : cat.en}
+                  </Link>
+                  {'children' in cat && cat.children && cat.children.map((child) => (
+                    <Link
+                      key={child.key}
+                      to={child.path}
+                      onClick={() => setCatalogueOpen(false)}
+                      className="block pl-9 pr-5 py-2.5 text-sm text-foreground/50 hover:text-gold hover:bg-gold/5 transition-all duration-200 tracking-wide"
+                    >
+                      ↳ {lang === "vi" ? child.vi : child.en}
+                    </Link>
+                  ))}
+                </div>
               ))}
             </div>
           )}
@@ -132,14 +144,25 @@ const Header = () => {
           {mobileCatalogueOpen && (
             <div className="pl-4 border-l border-gold/20 ml-2">
               {catalogueItems.map((cat) => (
-                <Link
-                  key={cat.key}
-                  to={cat.path}
-                  onClick={() => { setMenuOpen(false); setMobileCatalogueOpen(false); }}
-                  className="block py-2.5 text-sm text-foreground/60 hover:text-gold transition-colors duration-200 tracking-wide"
-                >
-                  {lang === "vi" ? cat.vi : cat.en}
-                </Link>
+                <div key={cat.key}>
+                  <Link
+                    to={cat.path}
+                    onClick={() => { setMenuOpen(false); setMobileCatalogueOpen(false); }}
+                    className="block py-2.5 text-sm text-foreground/60 hover:text-gold transition-colors duration-200 tracking-wide"
+                  >
+                    {lang === "vi" ? cat.vi : cat.en}
+                  </Link>
+                  {'children' in cat && cat.children && cat.children.map((child) => (
+                    <Link
+                      key={child.key}
+                      to={child.path}
+                      onClick={() => { setMenuOpen(false); setMobileCatalogueOpen(false); }}
+                      className="block py-2 pl-4 text-sm text-foreground/40 hover:text-gold transition-colors duration-200 tracking-wide"
+                    >
+                      ↳ {lang === "vi" ? child.vi : child.en}
+                    </Link>
+                  ))}
+                </div>
               ))}
             </div>
           )}
